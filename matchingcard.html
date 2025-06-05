@@ -11,14 +11,16 @@
 
 <body>
     
-    <h1>Matching Card Game</h1>
-    
-    <div id="board"></div>
+    <h1 id="mcg">Matching Card Game</h1>
 
-<div>
-    <p>Player number 1<span id="score1">0</span>points</p>
-    <p>Player number 2<span id="score2">0</span>points</p>
-    <p>It´s turn: Player <span id="current-player">1</span></p>
+    <div class="game-wrapper">
+        <div id="board"></div>
+    </div>
+
+<div class="player-number">
+        <p class="pm1">1.Player:  <span id="score1">&nbsp;0 </span>&nbsp;points</p>
+        <p class="pm2">2.Player:  <span id="score2">&nbsp;0 </span>&nbsp;points</p>
+    <p class="pm3">It´s turn:  Player <span id="current-player">&nbsp;1</span></p>
 </div>
 
 <p id="winner"></p>
