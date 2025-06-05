@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    color: rgb(172, 179, 255)
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(8, 100px);
+    gap: 10px;
+    margin: 20px auto;
+}
+
+.card {
+    width: 100px;
+    height: 100px;
+    background-color: linear-gradient(to bottom right, red, blue);
+    border: solid 1px white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    overflow: hidden;
+    cursor: pointer;
+}
+.card img{
+    display: block;
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+}
+.card.revealed img{
+    filter: none;
+}
+.card.revealed{
+   background: white;
+}
+/* .card:not(.revealed) img {
+  filter: brightness(0) saturate(100%) invert(1); 
+} */
