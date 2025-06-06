@@ -1,5 +1,5 @@
 
-console.log("JavaScript načítaný!");
+console.log("JavaScript loaded!");
 
 const themes = {
   ratatoule: [
@@ -140,11 +140,11 @@ function switchPlayer() {
 function checkGameOver() {
   if (matchedCards.length === cards.length) {
     const winnerText = scores[0] > scores[1]
-      ? "Vyhráva hráč 1!"
+      ? "<strong>Player 1 wins!</strong>"
       : scores[1] > scores[0]
-        ? "Vyhráva hráč 2!"
-        : "Remíza!";
-    document.getElementById("winner").textContent = winnerText;
+        ? "<strong>Player 2 wins!</strong>"
+        : "<strong>It's a draw!</strong>";
+    document.getElementById("winner").innerHTML = winnerText;
   }
 }
 
