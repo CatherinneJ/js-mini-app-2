@@ -1,6 +1,8 @@
 
 console.log("JavaScript loaded!");
 
+const flipSound = new Audio('sounds/flip.mp3');
+
 const themes = {
   ratatoule: [
     "ratatoule1.png", "ratatoule2.png", "ratatoule3.png",
@@ -104,6 +106,9 @@ function flipCard(card, index) {
     card.classList.contains("revealed") ||
     matchedCards.includes(index)
   ) return;
+
+  flipSound.currentTime = 0;
+  flipSound.play();
 
   card.classList.add("revealed");
   revealedCards.push({ index, img: cards[index] });
