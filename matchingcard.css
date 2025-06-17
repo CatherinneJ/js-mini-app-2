@@ -112,3 +112,22 @@ button {
     border-radius: 80px;
     box-shadow: rgba(0, 0, 0, 0.2);
 }
+#lion-area{
+    text-align: center;
+    margin-top:20px;
+}
+
+/* .hidden{
+    display:none;
+} */
+#food-options button{
+   font-size:2rem;
+   font-weight: 600;
+   margin: 0 10px;
+   cursor: pointer; 
+}
+#container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
