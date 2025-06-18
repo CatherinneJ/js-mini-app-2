@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="matchingcard.css">
-
     <title>Memory Matching Card Game</title>
 </head>
 
@@ -22,9 +21,7 @@
             </div>
         </div>
         <div class="left">
-
             <h1 id="mcg">Matching Card Game</h1>
-
 
             <div class="player-number">
                 <p class="pm1">1.Player: <span id="score1">&nbsp;0 </span>&nbsp;points</p>
@@ -39,18 +36,43 @@
             </div>
         </div>
     </div>
-  <script type="module">
-  import { init3DModel, playLionAnimation } from './js/3dModelLoader.js';
 
-  document.addEventListener('DOMContentLoaded', () => {
-    init3DModel();
+    <!-- Import map para usar Three.js via CDN -->
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
+    }
+    </script>
 
-    document.getElementById('feed-button').addEventListener('click', () => {
-      playLionAnimation();
+    <script type="module">
+    // Importar Three.js e GLTFLoader via CDN
+    import * as THREE from 'three';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+    
+    // Tornar disponível globalmente para outros scripts
+    window.THREE = THREE;
+    window.GLTFLoader = GLTFLoader;
+    
+    // Importar os módulos locais após THREE estar disponível
+    import { init3DModel, playLionAnimation } from './js/3dModelLoader.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+        init3DModel();
+        
+        // Conectar os botões de comida à animação do leão
+        const foodButtons = document.querySelectorAll('#food-options button');
+        foodButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                playLionAnimation();
+            });
+        });
     });
-  });
-</script>
-<script type="module" src="./js/matchingcard.js"></script>
+    </script>
+
+    <script type="module" src="./js/matchingcard.js"></script>
 </body>
 
 </html>
