@@ -9,20 +9,26 @@
 </head>
 
 <body>
+
     <div id="container">
         <div id="lion-area">
             <div id="lion-3d-container" style="width: 300px; height: 300px;"></div>
             <p id="lion-reaction"></p>
             <p id="feed-message" class="hidden"><strong>Feed me</strong></p>
             <div id="food-options" class="hidden">
-                <button onclick="feedLion('bone')">🦴</button>
+                <button onclick="feedLion('mouse')">🐁</button>
                 <button onclick="feedLion('meat')">🍖</button>
                 <button onclick="feedLion('water')">💧</button>
+                <button onclick="feedLion('fish')">🐟</button>
+                <button onclick="feedLion('candy')">🍭</button>
+                <button onclick="feedLion('ball')">🥎</button>
             </div>
+            <button id="next-btn" class="hidden">Start new round</button>
         </div>
         <div class="left">
             <h1 id="mcg">Matching Card Game</h1>
 
+>>>>>>> katarina
             <div class="player-number">
                 <p class="pm1">1.Player: <span id="score1">&nbsp;0 </span>&nbsp;points</p>
                 <p class="pm2">2.Player: <span id="score2">&nbsp;0 </span>&nbsp;points</p>
@@ -32,12 +38,12 @@
             <div class="game-wrapper">
                 <div id="board"></div>
                 <p id="winner"></p>
-                <button onclick="startGame()">New game</button>
+                <button id="new-game-btn">Change Cards</button>   
             </div>
         </div>
     </div>
 
-    <!-- Import map para usar Three.js via CDN -->
+    <!-- Import map to use Three.js via CDN -->
     <script type="importmap">
     {
       "imports": {
@@ -48,28 +54,29 @@
     </script>
 
     <script type="module">
-    // Importar Three.js e GLTFLoader via CDN
-    import * as THREE from 'three';
-    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-    
-    // Tornar disponível globalmente para outros scripts
-    window.THREE = THREE;
-    window.GLTFLoader = GLTFLoader;
-    
-    // Importar os módulos locais após THREE estar disponível
-    import { init3DModel, playLionAnimation } from './js/3dModelLoader.js';
 
-    document.addEventListener('DOMContentLoaded', () => {
-        init3DModel();
-        
-        // Conectar os botões de comida à animação do leão
-        const foodButtons = document.querySelectorAll('#food-options button');
-        foodButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                playLionAnimation();
+        // Import map Three.js from GLTFLoader to CDN
+        import * as THREE from 'three';
+        import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+        // Make globally available to other scripts
+        window.THREE = THREE;
+        window.GLTFLoader = GLTFLoader;
+
+        // Import from module THREE 
+        import { init3DModel, playLionAnimation } from './js/3dModelLoader.js';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            init3DModel();
+
+            // Connect the food buttons to the lion animation
+            const foodButtons = document.querySelectorAll('#food-options button');
+            foodButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    playLionAnimation();
+                });
             });
         });
-    });
     </script>
 
     <script type="module" src="./js/matchingcard.js"></script>

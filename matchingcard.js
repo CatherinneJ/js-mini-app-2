@@ -25,10 +25,10 @@ const themes = {
     "animal19.png", "animal20.png",
   ],
   flag: [
-    "flag1.png", "flag2.png", "flag3.png", "flag4.png", "flag5.png",
-    "flag6.png", "flag7.png", "flag8.png", "flag9.png", "flag10.png",
-    "flag11.png", "flag12.png", "flag13.png", "flag14.png", "flag15.png",
-    "flag15.png",
+     "flag1.png", "flag2.png", "flag3.png", "flag4.png", "flag5.png",
+      "flag6.png", "flag7.png", "flag8.png", "flag9.png", "flag10.png",
+       "flag11.png", "flag12.png", "flag13.png", "flag14.png", "flag15.png", 
+       "flag15.png",
   ]
 };
 
@@ -117,9 +117,6 @@ function flipCard(card, index) {
     card.classList.contains("revealed") ||
     matchedCards.includes(index)
   ) return;
-
-  flipSound.currentTime = 0;
-  flipSound.play();
 
   card.classList.add("revealed");
   revealedCards.push({ index, img: cards[index] });
