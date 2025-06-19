@@ -1,4 +1,7 @@
 
+import { playLionAnimation } from './3dModelLoader.js';
+import { stopLionAnimation } from './3dModelLoader.js';
+
 console.log("JavaScript načítaný!");
 
 const themes = {
@@ -48,6 +51,14 @@ function chooseRandomTheme() {
 }
 
 function startGame() {
+  document.getElementById("next-btn").classList.add("hidden");
+  document.getElementById("new-game-btn").classList.remove("hidden");
+  document.getElementById("feed-message").classList.add("hidden");
+  document.getElementById("food-options").classList.add("hidden");
+  document.getElementById("lion-reaction").classList.add("hidden");
+
+  document.getElementById("winner").textContent = "";
+
   const theme = chooseRandomTheme();
   const allThemeImages = themes[theme];
 
@@ -70,6 +81,8 @@ function startGame() {
 function renderBoard() {
   const board = document.getElementById("board");
   board.innerHTML = "";
+
+  console.log("current theme:", currentTheme)
 
   cards.forEach((imgName, index) => {
     const card = document.createElement("div");
@@ -139,13 +152,86 @@ function switchPlayer() {
 
 function checkGameOver() {
   if (matchedCards.length === cards.length) {
-    const winnerText = scores[0] > scores[1]
-      ? "Vyhráva hráč 1!"
-      : scores[1] > scores[0]
-        ? "Vyhráva hráč 2!"
-        : "Remíza!";
-    document.getElementById("winner").textContent = winnerText;
+
+     const winnerElement = document.getElementById("winner");
+
+      winnerElement.className = "";  //resset all class before 
+
+      if (scores[0] > scores[1]) {
+      winnerElement.textContent = "Player 1 wins!";
+      winnerElement.className = "winner winner-p1";
+    } else if (scores[1] > scores[0]) {
+      winnerElement.textContent = "Player 2 wins!";
+      winnerElement.className = "winner winner-p2";
+    } else {
+      winnerElement.textContent = "It's a draw!";
+      winnerElement.className = "winner winner-draw";
+    }
+    document.getElementById("feed-message").classList.remove("hidden");
+    document.getElementById("food-options").classList.remove("hidden");
+
+    // show next, hidden start
+    document.getElementById("next-btn").classList.remove("hidden");
+    document.getElementById("new-game-btn").classList.add("hidden");
   }
 }
 
-startGame();
+function playSound(file) {
+  const audio = new Audio(`sounds/${file}`);
+  audio.play();
+}
+
+import { init3DModel } from './3dModelLoader.js';
+init3DModel();
+
+window.addEventListener('DOMContentLoaded', () => {
+  init3DModel();
+  document.getElementById('new-game-btn').addEventListener('click', startGame);
+
+  document.getElementById('next-btn').addEventListener('click', () => {
+    document.getElementById('next-btn').classList.add('hidden');
+    document.getElementById('lion-reaction').textContent = "";
+    stopLionAnimation();
+    startGame(); // <- start another round
+  });
+
+  startGame(); // <-first start
+});
+
+
+function playSoundForFood(feed) {
+  const sounds = {
+    water: 'wag.mp3',
+    meat: 'roar.mp3',
+    fish: 'fish.mp3',
+    candy: 'candy.mp3',
+    ball: 'ball.mp3',
+    mouse: 'mouse.mp3'
+  };
+
+  const soundFile = sounds[feed] || 'default.mp3'; // Fallback 
+  const audio = new Audio('sounds/' + soundFile);
+  audio.play();
+}
+
+window.feedLion = function (feed) {
+  const reaction = document.getElementById('lion-reaction');
+  reaction.className = "reaction-box";
+
+  if (feed === 'mouse') reaction.innerHTML = '<strong>The cat is as happy as two grapefruits!</strong>';
+  else if (feed === 'meat') reaction.innerHTML = '<strong>The cat is strong like lion!</strong>';
+  else if (feed === 'fish') reaction.innerHTML = '<strong>The cat loves fish, how did you know?</strong>';
+  else if (feed === 'water') reaction.innerHTML = '<strong>The cat is as thirsty as a camel!</strong>';
+  else if (feed === 'candy') reaction.innerHTML = '<strong>The cat is not a human, you eat it!</strong>';
+  else if (feed === 'ball') reaction.innerHTML = '<strong>The cat wants a yarn of wool, what use is this to her?</strong>';
+
+  playSoundForFood(feed);
+
+  document.getElementById('feed-message').classList.add('hidden');
+  document.getElementById('food-options').classList.add('hidden');
+  document.getElementById('next-btn').classList.remove('hidden');
+
+  playLionAnimation();
+
+}
+>>>>>>> Stashed changes:js/matchingcard.js
