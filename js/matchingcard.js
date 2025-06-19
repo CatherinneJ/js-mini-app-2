@@ -4,6 +4,8 @@ import { stopLionAnimation } from './3dModelLoader.js';
 
 console.log("JavaScript načítaný!");
 
+const flipSound = new Audio('sounds/flip.mp3');
+
 const themes = {
   ratatoule: [
     "ratatoule1.png", "ratatoule2.png", "ratatoule3.png",

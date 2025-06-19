@@ -10,7 +10,7 @@ export function init3DModel() {
   camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
   camera.position.set(0, 3, 8);
   camera.lookAt(0, 3, 0); 
->>>>>>> katarina
+
 
   renderer = new THREE.WebGLRenderer({ alpha: true });
   renderer.setSize(container.clientWidth, container.clientHeight);
