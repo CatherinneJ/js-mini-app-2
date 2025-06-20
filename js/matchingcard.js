@@ -126,6 +126,10 @@ function flipCard(card, index) {
   flipSound.play();
 
   card.classList.add("revealed");
+  card.classList.add('animate__animated', 'animate__flipInY');
+  card.addEventListener('animationend', () => {
+    card.classList.remove('animate__animated', 'animate__flipInY');
+  }, { once: true });
   revealedCards.push({ index, img: cards[index] });
 
   if (revealedCards.length === 2) {
@@ -148,8 +152,19 @@ function flipCard(card, index) {
 
 function hideCards(i1, i2) {
   const board = document.getElementById("board");
-  board.children[i1].classList.remove("revealed");
-  board.children[i2].classList.remove("revealed");
+  const card1 = board.children[i1];
+  const card2 = board.children[i2];
+  
+  card1.classList.add('animate__animated', 'animate__flipOutY');
+  card2.classList.add('animate__animated', 'animate__flipOutY');
+  
+  card1.addEventListener('animationend', () => {
+    card1.classList.remove("revealed", 'animate__animated', 'animate__flipOutY');
+  }, { once: true });
+  
+  card2.addEventListener('animationend', () => {
+    card2.classList.remove("revealed", 'animate__animated', 'animate__flipOutY');
+  }, { once: true });
 }
 
 function switchPlayer() {
