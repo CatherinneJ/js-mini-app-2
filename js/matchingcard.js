@@ -59,7 +59,9 @@ function startGame() {
   document.getElementById("food-options").classList.add("hidden");
   document.getElementById("lion-reaction").classList.add("hidden");
 
-  document.getElementById("winner").textContent = "";
+  const winnerElement = document.getElementById("winner"); 
+  winnerElement.textContent = "";
+  winnerElement.classList.add("hidden"); 
 
   const theme = chooseRandomTheme();
   const allThemeImages = themes[theme];
@@ -161,6 +163,7 @@ function checkGameOver() {
      const winnerElement = document.getElementById("winner");
 
       winnerElement.className = "";  //resset all class before 
+      winnerElement.classList.remove("hidden"); //show result
 
       if (scores[0] > scores[1]) {
       winnerElement.textContent = "Player 1 wins!";
